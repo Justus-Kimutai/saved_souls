@@ -47,10 +47,10 @@ const sequelize = new Sequelize(process.env.DB_URL, {
   });
   
   app.get("/", (req, res) => {
-    res.send("Hello Captain!");
+    res.send("Hello World!");
   });
   
-  app.post("/create-post", async (req, res) => {
+  app.post("/save-soul", async (req, res) => {
     const { name, phone, region, village } = req.body;
     try {
       const newPost = await post.create({ name, phone, region, village });
@@ -60,7 +60,7 @@ const sequelize = new Sequelize(process.env.DB_URL, {
     }
   });
   
-  app.get("/get-posts", async (req, res) => {
+  app.get("/get-saved", async (req, res) => {
     try {
       const allPosts = await post.findAll();
       res.json(allPosts);
