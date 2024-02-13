@@ -69,6 +69,16 @@ const sequelize = new Sequelize(process.env.DB_URL, {
     }
   });
   
+  app.delete("/delete-all-people", async (req, res) => {
+    try {
+      await post.destroy({ where: {} });
+      res.send("All posts deleted");
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("Internal Server Error");
+    }
+  });
+  
   
   app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
